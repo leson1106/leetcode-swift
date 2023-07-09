@@ -46,8 +46,7 @@ class Solution {
         
         var currentIndex = nums.count - 1
         
-        //compare to -1 with final loop when i == j to replace first index
-        while currentIndex != -1 {
+        while i <= j {
             if abs(nums[i]) <= abs(nums[j]) {
                 sorted[currentIndex] = nums[j] * nums[j]
                 j -= 1
@@ -62,6 +61,6 @@ class Solution {
     }
 }
 
-//let nums = [-4,-1,0,3,10]
-let nums = [-7,-3,2,3,11]
+let nums = [-4,-1,0,3,10]
+//let nums = [-7,-3,2,3,11]
 Solution().sortedSquares(nums)
