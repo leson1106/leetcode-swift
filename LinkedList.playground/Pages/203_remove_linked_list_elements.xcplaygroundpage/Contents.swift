@@ -31,8 +31,8 @@ extension Solution {
     }
 }
 
-//let list: ListNode? = .init(1, .init(2, .init(6, .init(3, .init(4, .init(5, .init(6)))))))
-let list: ListNode? = .init(7, .init(7, .init(7)))
+let list: ListNode? = .init(1, .init(2, .init(6, .init(3, .init(4, .init(5, .init(6)))))))
+//let list: ListNode? = .init(7, .init(7, .init(7)))
 let result = Solution().removeElements(list, 7)
 printNode(result)
 
