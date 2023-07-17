@@ -7,7 +7,7 @@
         <page name='2_add_two_numbers'/>
         <page name='445_add_two_numbers_2'/>
         <page name='24_swap_pairs'/>
-        <page name='Untitled Page 3'/>
-        <page name='Untitled Page'/>
+        <page name='203_remove_linked_list_elements'/>
+        <page name='206_reverse_linked_list'/>
     </pages>
 </playground>
