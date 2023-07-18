@@ -10,5 +10,6 @@
         <page name='203_remove_linked_list_elements'/>
         <page name='206_reverse_linked_list'/>
         <page name='237_delete_node_in_linked_list'/>
+        <page name='234_palindrome_linked_list'/>
     </pages>
 </playground>
