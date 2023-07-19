@@ -13,5 +13,6 @@
         <page name='234_palindrome_linked_list'/>
         <page name='141_linked_list_cycle'/>
         <page name='160_intersection_of_2_linked_lists'/>
+        <page name='876_middle_of_the_linked_list'/>
     </pages>
 </playground>
