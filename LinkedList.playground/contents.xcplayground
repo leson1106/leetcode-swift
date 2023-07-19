@@ -11,5 +11,7 @@
         <page name='206_reverse_linked_list'/>
         <page name='237_delete_node_in_linked_list'/>
         <page name='234_palindrome_linked_list'/>
+        <page name='141_linked_list_cycle'/>
+        <page name='160_intersection_of_2_linked_lists'/>
     </pages>
 </playground>
