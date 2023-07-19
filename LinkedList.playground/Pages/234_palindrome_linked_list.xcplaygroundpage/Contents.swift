@@ -41,8 +41,29 @@ extension Solution {
     }
 }
 
-let list: ListNode? = ListNode(1, .init(2, .init(3, .init(4, .init(5)))))
-//let list: ListNode? = ListNode(1, .init(2, .init(2, .init(1))))
-let result = Solution().isPalindrome(list)
+class Solution2 {
+    ///Time complexity: `O(n)`
+    ///Space complexity: `O(n)`
+    private var frontPointer: ListNode?
+    
+    func isPalindrome(_ head: ListNode?) -> Bool {
+        frontPointer = head
+        return recursiveCheck(frontPointer)
+    }
+    
+    private func recursiveCheck(_ currentNode: ListNode?) -> Bool {
+        if currentNode != nil {
+            if !recursiveCheck(currentNode?.next)       { return false }
+            if currentNode?.val != frontPointer?.val    { return false }
+            frontPointer = frontPointer?.next
+        }
+        return true
+    }
+}
 
+//let list: ListNode? = ListNode(1, .init(2, .init(3, .init(4, .init(5)))))
+let list: ListNode? = ListNode(1, .init(2, .init(2, .init(1))))
+//let result = Solution().isPalindrome(list)
+
+let result2 = Solution2().isPalindrome(list)
 //: [Next](@next)
