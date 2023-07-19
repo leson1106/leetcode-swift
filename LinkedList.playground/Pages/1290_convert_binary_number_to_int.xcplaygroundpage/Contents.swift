@@ -21,6 +21,27 @@ extension Solution {
         
         return Int(binaryStr, radix: 2)!
     }
+    
+    func getDecimalValue2(_ head: ListNode?) -> Int {
+        var num = 0
+        var head = head
+        while head != nil {
+            num = num * 2 + head!.val
+            head = head?.next
+        }
+        return num
+    }
+    
+    ///bitwise
+    func getDecimalValue3(_ head: ListNode?) -> Int {
+        var num = 0
+        var head = head
+        while head != nil {
+            num = (num << 1) | head!.val
+            head = head?.next
+        }
+        return num
+    }
 }
 
 //: [Next](@next)
