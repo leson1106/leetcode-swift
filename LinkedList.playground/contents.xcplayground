@@ -15,5 +15,6 @@
         <page name='160_intersection_of_2_linked_lists'/>
         <page name='876_middle_of_the_linked_list'/>
         <page name='1290_convert_binary_number_to_int'/>
+        <page name='61_rotate_list'/>
     </pages>
 </playground>
