@@ -37,9 +37,28 @@ extension Solution {
         
         return new
     }
+    
+    func removeNodes(_ head: ListNode?) -> ListNode? {
+        var dummy: ListNode? = ListNode(-1, head)
+        var current = dummy
+        
+        while current?.next != nil && current?.next?.next != nil {
+            if let val = current?.next?.val, let nextVal = current?.next?.next?.val {
+                if val < nextVal {
+                    current = current?.next
+                } else {
+                    let temp = current?.next?.next
+                    current?.next = temp
+                }
+            }
+        }
+        
+        return current
+    }
 }
 
-let k = 4
-let result = 4 % 5
+let list: ListNode? = .init(5, .init(2, .init(13, .init(3, .init(8)))))
+let result = Solution().removeNodes(list)
+printNode(result)
 
 //: [Next](@next)
