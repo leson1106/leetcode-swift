@@ -19,7 +19,7 @@ class Solution {
     ///Space `O(n)` which  `n` is total value of `map` in worst case
     func sortArray(_ nums: [Int]) -> [Int] {
         guard !nums.isEmpty else { return [] }
-        var nums = nums
+        var result = Array(repeating: -1, count: nums.count)
         var map: [Int: Int] = [:]
         var minVal = nums[0]
         var maxVal = nums[0]
@@ -29,24 +29,20 @@ class Solution {
             maxVal = max(nums[i], maxVal)
             map[nums[i], default: 0] += 1
         }
-        
         var i = 0
         while minVal <= maxVal {
-            for (key, value) in map {
-                if key == minVal && value > 0 {
-                    nums[i] = key
-                    i += 1
-                    if map[key] != nil {
-                        map[key]! -= 1
-                    }
-                }
+            while let count = map[minVal], count > 0 {
+                result[i] = minVal
+                i += 1
+                map[minVal]! -= 1
             }
             minVal += 1
         }
         
-        return nums
+        return result
     }
 }
 
-let array = [5,2,3,1]
+//let array = [5,2,3,1]
+let array = [5,1,1,2,0,0]
 let result = Solution().sortArray(array)
