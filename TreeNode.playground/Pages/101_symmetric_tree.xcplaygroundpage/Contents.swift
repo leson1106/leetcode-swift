@@ -45,13 +45,26 @@ extension Solution {
     }
     
     ///`DFS`
-    func isSymmetric(_ root: TreeNode?) -> Bool {
-        return false
+    func isSymmetric2(_ root: TreeNode?) -> Bool {
+        func compare(_ t1: TreeNode?, _ t2: TreeNode?) -> Bool {
+            if t1 == nil && t2 == nil { return true }
+            else if t1 == nil || t2 == nil { return false }
+            return compare(t1?.left, t2?.right) && compare(t1?.right, t2?.left) && t1?.val == t2?.val
+        }
+        return compare(root?.left, root?.right)
     }
 }
 
+//let root: TreeNode? = .init(1,
+//                            .init(2, .init(3), .init(4)),
+//                            .init(2, .init(1), .init(4)))
+//let root: TreeNode? = .init(1,
+//                            .init(2, .init(3), .init(4)),
+//                            .init(2, .init(4), .init(3)))
+//let root: TreeNode? = .init(1)
 let root: TreeNode? = .init(1,
-                            .init(2, .init(3), .init(4)),
-                            .init(2, .init(1), .init(4)))
-let result = Solution().isSymmetric(root)
+                            .init(2, nil, .init(3)),
+                            .init(2, nil, .init(3)))
+//let result = Solution().isSymmetric(root)
+let result = Solution().isSymmetric2(root)
 //: [Next](@next)
