@@ -76,8 +76,54 @@ class Solution {
             return iterate(set2, set1)
         }
     }
+    
+    ///Write an algorithm to determine if a number n is happy.
+    ///A happy number is a number defined by the following process:
+    ///Starting with any positive integer, replace the number by the sum of the squares of its digits.
+    ///Repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1.
+    ///Those numbers for which this process ends in 1 are happy.
+    ///Return true if n is a happy number, and false if not.
+    ///
+    ///     E.g: Input: n = 19
+    ///     Output: true
+    ///     Explanation:
+    ///     12 + 92 = 82
+    ///     82 + 22 = 68
+    ///     62 + 82 = 100
+    ///     12 + 02 + 02 = 1
+    ///
+    ///Time complexity: linear time`O(log n)`cause spliting number to smaller instead iterate from 0 to n
+    ///Space complexity: `O(n)` which n is seen's elements
+    func isHappy(_ n: Int) -> Bool {
+        func split(_ input: Int) -> Int {
+            var sum = 0
+            var input = input
+            
+            while input > 0 {
+                let remainder = input % 10
+                sum += (remainder * remainder)
+                input = input / 10
+            }
+            
+            return sum
+        }
+        
+        var seen: Set<Int> = .init()
+        var input = n
+        
+        while input != 1 {
+            if seen.contains(input) {
+                return false
+            }
+            seen.insert(input)
+            input = split(input)
+        }
+        
+        return true
+    }
 }
 
 //let result1 = Solution().containsDuplicate([1,2,3,1])
 //let result2 = Solution().singleNumber([1,1,2])
-let result3 = Solution().intersection([4,9,5], [9,4,9,8,4])
+//let result3 = Solution().intersection([4,9,5], [9,4,9,8,4])
+let result4 = Solution().isHappy(7)
