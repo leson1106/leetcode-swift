@@ -78,6 +78,146 @@ class Solution {
         }
         return true
     }
+    
+    ///Given two arrays of strings list1 and list2, find the common strings with the least index sum.
+    ///A common string is a string that appeared in both list1 and list2.
+    ///A common string with the least index sum is a common string such that if it appeared at list1[i] and list2[j] then i + j should be the minimum value among all the other common strings.
+    ///Return all the common strings with the least index sum. Return the answer in any order.
+    ///
+    ///     Input: list1 = ["Shogun","Tapioca Express","Burger King","KFC"], list2 = ["Piatti","The Grill at Torrey Pines","Hungry Hunter Steakhouse","Shogun"]
+    ///     Output: ["Shogun"]
+    ///     Explanation: The only common string is "Shogun".
+    ///
+    ///     Input: list1 = ["Shogun","Tapioca Express","Burger King","KFC"], list2 = ["KFC","Shogun","Burger King"]
+    ///     Output: ["Shogun"]
+    ///     Explanation: The common string with the least index sum is "Shogun" with index sum = (0 + 1) = 1.
+    ///
+    ///     Input: list1 = ["happy","sad","good"], list2 = ["sad","happy","good"]
+    ///     Output: ["sad","happy"]
+    ///     Explanation: There are three common strings:
+    ///     "happy" with index sum = (0 + 1) = 1.
+    ///     "sad" with index sum = (1 + 0) = 1.
+    ///     "good" with index sum = (2 + 2) = 4.
+    ///     The strings with the least index sum are "sad" and "happy".
+    ///
+    ///Time complexity  `O(n + m)` for iterating 2 lists (which n & m is string length) and plus `O(p)` which p is map size
+    ///=> `O(n + m + p)`
+    ///Space complexity `O(n + m)` which n + m is map size = size of 2 strings in worse case and plus `O(p)` which p is result size
+    ///=> `O(n + m + p)
+    func findRestaurant(_ list1: [String], _ list2: [String]) -> [String] {
+        var list1 = list1.map { String($0) }
+        var list2 = list2.map { String($0) }
+        
+        var map: [String: [Int]] = [:]
+        var minSumIndexes: Int = Int.max
+        
+        func convert(_ list: [String], to map: inout [String: [Int]]) {
+            for i in 0..<list.count {
+                if !map.keys.contains(list[i]) {
+                    map[list[i]] = [i]
+                } else {
+                    var val = map[list[i]]
+                    val?.append(i)
+                    map[list[i]] = val!
+                    
+                    let sum = val!.reduce(0, +)
+                    minSumIndexes = minSumIndexes < sum ? minSumIndexes : sum
+                }
+            }
+        }
+        
+        convert(list1, to: &map)
+        convert(list2, to: &map)
+        
+        var result: [String] = []
+        
+        for (key, values) in map where values.count > 1 {
+            if values.reduce(0, +) == minSumIndexes {
+                result.append(key)
+            }
+        }
+        
+        return result
+    }
+    
+    ///Time complexity  `O(n + m)` where n & m is 2 strings length
+    ///Space complexity `O(n + p)` where n is map size & m is result size
+    func findRestaurant2(_ list1: [String], _ list2: [String]) -> [String] {
+        let list1 = list1.map { String($0) }
+        let list2 = list2.map { String($0) }
+        
+        var map: [String: Int] = [:]
+        var result: [String] = []
+        var minSumIndexes: Int = Int.max
+        
+        //added all elements in list 1 to map
+        for i in 0..<list1.count {
+            map[list1[i]] = i
+        }
+        
+        //following by requirement, always have unique items so ignore items which is not in map
+        //just combine items which included in map
+        for i in 0..<list2.count where map.keys.contains(list2[i]) {
+            var val = map[list2[i]]!
+            val += i
+            
+            //min sum changed, clear result
+            if minSumIndexes > val {
+                result.removeAll()
+                minSumIndexes = val
+                result.append(list2[i])
+            //min sum == val, append more element has same sum indexes
+            } else if minSumIndexes == val {
+                result.append(list2[i])
+            }
+        }
+        return result
+    }
+    
+    ///Using map
+    ///Time complexity `O(n + m)` which n is s length & m is map size
+    ///Space complexity `O(m)` which n is map size
+    func firstUniqChar(_ s: String) -> Int {
+        let s = s.map { String($0) }
+        var map: [String: (count: Int, index: Int)] = [:]
+        for i in 0..<s.count {
+            if map.keys.contains(s[i]) {
+                var val = map[s[i]]!
+                val.count += 1
+                map[s[i]] = val
+            } else {
+                map[s[i]] = (count: 1, index: i)
+            }
+        }
+        
+        var minIndex: Int = .max
+        for (_, val) in map where val.count == 1 {
+            minIndex = minIndex > val.index ? val.index : minIndex
+        }
+        
+        return minIndex != .max ? minIndex : -1
+    }
+    
+    ///Using array
+    ///Time complexity `O(n)` which n is s length
+    ///Space complexity `O(1)` no extra space needed except aplhabet 26 letters
+    func firstUniqChar2(_ s: String) -> Int {
+        //26 letters
+        var letters = Array(repeating: 0, count: 26)
+        //searched the UnicodeScalar
+        let a = UnicodeScalar("a").value
+        s.unicodeScalars.forEach{ c in
+            letters[Int(c.value - a)] += 1
+        }
+        var i = 0
+        for c in s.unicodeScalars {
+            if letters[Int(c.value - a)] == 1 {
+                return i
+            }
+            i += 1
+        }
+        return -1
+    }
 }
 
 //two sum
@@ -87,9 +227,19 @@ class Solution {
 //let result3 = Solution().twoSum([4,-2,5,0,6,3,2,7], 1)
 
 //is isomorphic
-let result = Solution().isIsomorphic("egg", "add")
-let result1 = Solution().isIsomorphic("foo", "bar")
-let result2 = Solution().isIsomorphic("paper", "title")
-let result4 = Solution().isIsomorphic("badc", "baba")
+//let result = Solution().isIsomorphic("egg", "add")
+//let result1 = Solution().isIsomorphic("foo", "bar")
+//let result2 = Solution().isIsomorphic("paper", "title")
+//let result4 = Solution().isIsomorphic("badc", "baba")
+
+//find restaurant
+//let result = Solution().findRestaurant2(["Shogun","Tapioca Express","Burger King","KFC"], ["Piatti","The Grill at Torrey Pines","Hungry Hunter Steakhouse","Shogun"])
+//let result1 = Solution().findRestaurant2(["Shogun","Tapioca Express","Burger King","KFC"], ["KFC","Shogun","Burger King"])
+//let result2 = Solution().findRestaurant2(["happy","sad","good"], ["sad","happy","good"])
+
+//first uniqChar
+let result = Solution().firstUniqChar2("leetcode")
+let result1 = Solution().firstUniqChar2("loveleetcode")
+let result2 = Solution().firstUniqChar2("aabb")
 
 //: [Next](@next)
