@@ -218,6 +218,58 @@ class Solution {
         }
         return -1
     }
+    
+    ///Given two integer arrays nums1 and nums2, return an array of their intersection.
+    ///Each element in the result must appear as many times as it shows in both arrays and you may return the result in any order.
+    ///
+    ///     Input: nums1 = [1,2,2,1], nums2 = [2,2]
+    ///     Output: [2,2]
+    ///
+    ///     Input: nums1 = [4,9,5], nums2 = [9,4,9,8,4]
+    ///     Output: [4,9] | [9,4] is also accepted.
+    ///
+    ///Time complexity  `O(n + m)` which n & m is 2 array's elements
+    ///Space complexity `O(n)` which n is map size = smaller array size in worse case
+    func intersect(_ nums1: [Int], _ nums2: [Int]) -> [Int] {
+        var map: [Int: Int] = [:]
+        
+        func findIntersect(bigger: [Int], smaller: [Int]) -> [Int] {
+            
+            var result: [Int] = []
+            
+            for num in smaller {
+                if map.keys.contains(num) {
+                    map[num]? += 1
+                } else {
+                    map[num] = 1
+                }
+            }
+            
+            for i in 0..<bigger.count {
+                if map.keys.contains(bigger[i]) {
+                    var count = map[bigger[i]]!
+                    count -= 1
+                    map[bigger[i]] = count
+                    
+                    if count >= 0 {
+                        result.append(bigger[i])
+                    }
+                    
+                    if count == 0 {
+                        map[bigger[i]] = nil
+                    }
+                }
+            }
+            
+            return result
+        }
+        
+        if nums1.count > nums2.count {
+            return findIntersect(bigger: nums1, smaller: nums2)
+        } else {
+            return findIntersect(bigger: nums2, smaller: nums1)
+        }
+    }
 }
 
 //two sum
@@ -238,8 +290,12 @@ class Solution {
 //let result2 = Solution().findRestaurant2(["happy","sad","good"], ["sad","happy","good"])
 
 //first uniqChar
-let result = Solution().firstUniqChar2("leetcode")
-let result1 = Solution().firstUniqChar2("loveleetcode")
-let result2 = Solution().firstUniqChar2("aabb")
+//let result = Solution().firstUniqChar2("leetcode")
+//let result1 = Solution().firstUniqChar2("loveleetcode")
+//let result2 = Solution().firstUniqChar2("aabb")
+
+//intersect
+let result = Solution().intersect([1,2,2,1], [2,2])
+let result1 = Solution().intersect([4,9,5], [9,4,9,8,4])
 
 //: [Next](@next)
