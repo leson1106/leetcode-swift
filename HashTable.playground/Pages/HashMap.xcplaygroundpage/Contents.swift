@@ -270,6 +270,40 @@ class Solution {
             return findIntersect(bigger: nums2, smaller: nums1)
         }
     }
+    
+    ///Given an integer array nums and an integer k, return true if there are two distinct indices i and j
+    ///in the array such that nums[i] == nums[j] and abs(i - j) <= k.
+    ///
+    ///     Input: nums1 = [1,2,3,1], k = 3
+    ///     Output: true
+    ///
+    ///     Input: nums = [1,0,1,1], k = 1
+    ///     Output: true
+    ///
+    ///     Input: nums = [1,2,3,1,2,3], k = 2
+    ///     Output: false
+    ///
+    ///Time complexity  `O(n)` which n nums size
+    ///Space complexity `O(n)` which n is map size
+    func containsNearbyDuplicate(_ nums: [Int], _ k: Int) -> Bool {
+        var map: [Int: Int] = [:] /*[num: index]*/
+        
+        for i in 0..<nums.count {
+            if map.keys.contains(nums[i]) {
+                let prevIndex = map[nums[i]]!
+                let absIndexes = abs(prevIndex - i)
+                if absIndexes <= k {
+                    return true
+                } else {
+                    map[nums[i]] = i
+                }
+            } else {
+                map[nums[i]] = i
+            }
+        }
+        
+        return false
+    }
 }
 
 //two sum
@@ -295,7 +329,12 @@ class Solution {
 //let result2 = Solution().firstUniqChar2("aabb")
 
 //intersect
-let result = Solution().intersect([1,2,2,1], [2,2])
-let result1 = Solution().intersect([4,9,5], [9,4,9,8,4])
+//let result = Solution().intersect([1,2,2,1], [2,2])
+//let result1 = Solution().intersect([4,9,5], [9,4,9,8,4])
+
+//contains nearby duplicate
+let result = Solution().containsNearbyDuplicate([1,2,3,1], 3)
+let result1 = Solution().containsNearbyDuplicate([1,0,1,1], 1)
+let result2 = Solution().containsNearbyDuplicate([1,2,3,1,2,3], 2)
 
 //: [Next](@next)
