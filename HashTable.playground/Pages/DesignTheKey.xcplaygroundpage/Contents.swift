@@ -36,11 +36,29 @@ class Solution {
         }
         return Array(map.values)
     }
+    
+    ///Time complexity `O(n + m)` which n is jewels string length and m is stones string length
+    ///Space complexity `O(n)` which n is size of set + `O(1)` for couting => `O(n)` in total
+    func numJewelsInStones(_ jewels: String, _ stones: String) -> Int {
+        var jewelSet = Set(jewels)
+        
+        var jCount = 0
+        for s in stones {
+            if jewelSet.contains(s) {
+                jCount += 1
+            }
+        }
+        
+        return jCount
+    }
 }
 
 //groupAnagrams
-let result = Solution().groupAnagrams(["eat","tea","tan","ate","nat","bat"])
-let result1 = Solution().groupAnagrams([""])
-let result2 = Solution().groupAnagrams(["a"])
+//let result = Solution().groupAnagrams(["eat","tea","tan","ate","nat","bat"])
+//let result1 = Solution().groupAnagrams([""])
+//let result2 = Solution().groupAnagrams(["a"])
+
+let result = Solution().numJewelsInStones("aA", "aAAbbbb")
+let result1 = Solution().numJewelsInStones("z", "ZZ")
 
 //: [Next](@next)
