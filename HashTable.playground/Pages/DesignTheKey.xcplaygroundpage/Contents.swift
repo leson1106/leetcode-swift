@@ -52,6 +52,19 @@ class Solution {
         return jCount
     }
     
+    ///Given a string s, find the length of the longest substring without repeating characters.
+    ///
+    ///     Input: s = "abcabcbb"
+    ///     Output: 3
+    ///     Explanation: The answer is "abc", with the length of 3.
+    ///
+    ///     Input: s = "bbbbb"
+    ///     Output: 1
+    ///
+    ///     Input: s = "pwwkew"
+    ///     Output: 3
+    ///     Explanation: The answer is "wke", with the length of 3. Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
+    ///
     ///Time complexity `O(n)` which n is s length
     ///Space comlexity `O(m)` which m is map size + `longest` & `startIndex` cost `O(1)` => `O(n)` in total
     func lengthOfLongestSubstring(_ s: String) -> Int {
@@ -67,6 +80,25 @@ class Solution {
         }
         return longest
     }
+    
+    ///Time complexity `O(n)` which customers length
+    ///Space comlexity `O(1)`
+    func bestClosingTime(_ customers: String) -> Int {
+        var count: Int = 0
+        var result: Int = 0
+        for (i, c) in customers.enumerated() {
+            if String(c) == "N" {
+                count += 1
+            } else {
+                count -= 1
+                if count < 0 {
+                    result = i + 1
+                    count = 0
+                }
+            }
+        }
+        return result
+    }
 }
 
 //groupAnagrams
@@ -74,13 +106,20 @@ class Solution {
 //let result1 = Solution().groupAnagrams([""])
 //let result2 = Solution().groupAnagrams(["a"])
 
+//numJewelsInStones
 //let result = Solution().numJewelsInStones("aA", "aAAbbbb")
 //let result1 = Solution().numJewelsInStones("z", "ZZ")
 
-let result = Solution().lengthOfLongestSubstring("abcabcbb")
-let result1 = Solution().lengthOfLongestSubstring("bbbbb")
-let result2 = Solution().lengthOfLongestSubstring("pwwkew")
-let result3 = Solution().lengthOfLongestSubstring("dvdf")
-let result4 = Solution().lengthOfLongestSubstring("anviaj")
+//lengthOfLongestSubstring
+//let result = Solution().lengthOfLongestSubstring("abcabcbb")
+//let result1 = Solution().lengthOfLongestSubstring("bbbbb")
+//let result2 = Solution().lengthOfLongestSubstring("pwwkew")
+//let result3 = Solution().lengthOfLongestSubstring("dvdf")
+//let result4 = Solution().lengthOfLongestSubstring("anviaj")
+
+let result = Solution().bestClosingTime("YYNY")
+let result1 = Solution().bestClosingTime("NNNN")
+let result2 = Solution().bestClosingTime("YYYY")
+let result3 = Solution().bestClosingTime("YN")
 
 //: [Next](@next)
