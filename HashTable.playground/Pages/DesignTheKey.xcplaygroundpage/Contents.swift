@@ -51,6 +51,22 @@ class Solution {
         
         return jCount
     }
+    
+    ///Time complexity `O(n)` which n is s length
+    ///Space comlexity `O(m)` which m is map size + `longest` & `startIndex` cost `O(1)` => `O(n)` in total
+    func lengthOfLongestSubstring(_ s: String) -> Int {
+        var longest = 0, startIndex = 0
+        var charMap: [Character: Int] = [:]
+        
+        for (index, char) in s.enumerated() {
+            if let foundIndex = charMap[char] {
+                startIndex = max(foundIndex+1, startIndex)
+            }
+            longest = max(longest, index - startIndex + 1)
+            charMap[char] = index
+        }
+        return longest
+    }
 }
 
 //groupAnagrams
@@ -58,7 +74,13 @@ class Solution {
 //let result1 = Solution().groupAnagrams([""])
 //let result2 = Solution().groupAnagrams(["a"])
 
-let result = Solution().numJewelsInStones("aA", "aAAbbbb")
-let result1 = Solution().numJewelsInStones("z", "ZZ")
+//let result = Solution().numJewelsInStones("aA", "aAAbbbb")
+//let result1 = Solution().numJewelsInStones("z", "ZZ")
+
+let result = Solution().lengthOfLongestSubstring("abcabcbb")
+let result1 = Solution().lengthOfLongestSubstring("bbbbb")
+let result2 = Solution().lengthOfLongestSubstring("pwwkew")
+let result3 = Solution().lengthOfLongestSubstring("dvdf")
+let result4 = Solution().lengthOfLongestSubstring("anviaj")
 
 //: [Next](@next)
