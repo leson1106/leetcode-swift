@@ -7,5 +7,6 @@
         <page name='102_binary_tree_level_order_traversal'/>
         <page name='112_path_sum'/>
         <page name='226_invert_binary_tree'/>
+        <page name='404_sum_of_left_leaves'/>
     </pages>
 </playground>
