@@ -16,3 +16,21 @@ public class TreeNode {
 public class Solution {
     public init() { }
 }
+
+///Print with breath-first from left -> right
+public func printTree(_ root: TreeNode?) {
+    var queue = [root]
+    var result: String = ""
+    while !queue.isEmpty {
+        let node = queue.removeFirst()
+        let val: String = node?.val == nil ? "nil" : String(node!.val)
+        result += "\(val) -> "
+        if node?.left != nil {
+            queue.append(node?.left)
+        }
+        if node?.right != nil {
+            queue.append(node?.right)
+        }
+    }
+    print(result)
+}

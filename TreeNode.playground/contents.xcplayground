@@ -6,5 +6,6 @@
         <page name='46_max_depth_of_tree'/>
         <page name='102_binary_tree_level_order_traversal'/>
         <page name='112_path_sum'/>
+        <page name='226_invert_binary_tree'/>
     </pages>
 </playground>
