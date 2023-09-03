@@ -3,28 +3,32 @@
 import Foundation
 
 extension Solution {
+    ///Time complexity `O(n)` which n is children nodes
+    ///Space complexity `O(n)` is size of queue, in worst case is all tree nodes
+    ///`BFS`
     func maxDepth(_ root: TreeNode?) -> Int {
         guard root != nil else { return 0 }
         
-        var count: Int = 1
-        var queue = [root]
+        var count: Int = 0
+        var queue = [(root, 1)]
         
         while !queue.isEmpty {
-            let node = queue.removeFirst()
-            count += 1
-            
-            if node?.left != nil && node?.right != nil {
-                count -= 1
-            }
+            let (node, depth) = queue.removeFirst()
+            count = max(count, depth)
             if node?.left != nil {
-                queue.append(node?.left)
+                queue.append((node?.left, depth + 1))
             }
             if node?.right != nil {
-                queue.append(node?.right)
+                queue.append((node?.right, depth + 1))
             }
         }
         
         return count
+    }
+    
+    ///`DFS`
+    func maxDepth2(_ root: TreeNode?) -> Int {
+        root == nil ? 0 : max(maxDepth2(root?.left), maxDepth2(root?.right)) + 1
     }
 }
 
