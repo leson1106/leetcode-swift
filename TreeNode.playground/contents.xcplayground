@@ -8,5 +8,6 @@
         <page name='112_path_sum'/>
         <page name='226_invert_binary_tree'/>
         <page name='404_sum_of_left_leaves'/>
+        <page name='530_min_abs_difference_in_bst'/>
     </pages>
 </playground>
