@@ -18,5 +18,4 @@ let root1: TreeNode? = .init(1)
 let root2: TreeNode? = .init(1, .init(2), nil)
 let result = Solution().mergeTrees(root1, root2)
 printTree(result)
-
 //: [Next](@next)
