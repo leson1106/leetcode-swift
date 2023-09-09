@@ -11,5 +11,6 @@
         <page name='530_min_abs_difference_in_bst'/>
         <page name='617_merge_2_binary_trees'/>
         <page name='637_average_of_levels_in_BT'/>
+        <page name='107_binary_tree_level_order_traversal_2'/>
     </pages>
 </playground>
