@@ -12,5 +12,9 @@
         <page name='617_merge_2_binary_trees'/>
         <page name='637_average_of_levels_in_BT'/>
         <page name='107_binary_tree_level_order_traversal_2'/>
+        <page name='653_two_sum4_input_is_a_BST'/>
+        <page name='559_max_depth_of_tree'/>
+        <page name='965_univalued_tree'/>
+        <page name='Untitled Page'/>
     </pages>
 </playground>
