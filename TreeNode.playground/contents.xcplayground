@@ -16,5 +16,6 @@
         <page name='559_max_depth_of_tree'/>
         <page name='965_univalued_tree'/>
         <page name='993_cousins_in_tree'/>
+        <page name='103_tree_zigzag_level_order_traversal'/>
     </pages>
 </playground>
