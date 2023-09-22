@@ -17,5 +17,6 @@
         <page name='965_univalued_tree'/>
         <page name='993_cousins_in_tree'/>
         <page name='103_tree_zigzag_level_order_traversal'/>
+        <page name='199_binary_tree_right_side_view'/>
     </pages>
 </playground>
