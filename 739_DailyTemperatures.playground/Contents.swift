@@ -7,7 +7,7 @@ class Solution {
         guard !temperatures.isEmpty else { return [] }
         
         var stack: [(Int, Int)] = [] /*(temp, index) */
-        var res: [Int] = Array(repeating: -1, count: temperatures.count)
+        var res: [Int] = Array(repeating: 0, count: temperatures.count)
         
         for i in 0..<temperatures.count {
             let temp = temperatures[i]
@@ -25,14 +25,6 @@ class Solution {
                 stackCount -= 1
             }
             stack.append((temp, i))
-        }
-        
-        //These last elements fill with 0
-        var index = stack.count
-        while index > 0 {
-            let ele = stack.removeLast()
-            res[ele.1] = 0
-            index -= 1
         }
         
         return res
