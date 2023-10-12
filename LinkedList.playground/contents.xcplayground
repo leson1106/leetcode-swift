@@ -18,5 +18,6 @@
         <page name='61_rotate_list'/>
         <page name='2487_remove_nodes_from_linked_list'/>
         <page name='BFS_Template1'/>
+        <page name='147_insertion_sort_list'/>
     </pages>
 </playground>
