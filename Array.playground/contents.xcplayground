@@ -8,5 +8,6 @@
         <page name='PascalTriangleII'/>
         <page name='ArrayPartitionI'/>
         <page name='TwoSumII'/>
+        <page name='RotateArray'/>
     </pages>
 </playground>
