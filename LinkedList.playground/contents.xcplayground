@@ -19,5 +19,6 @@
         <page name='2487_remove_nodes_from_linked_list'/>
         <page name='BFS_Template1'/>
         <page name='147_insertion_sort_list'/>
+        <page name='876_middle_of_linked_list'/>
     </pages>
 </playground>
