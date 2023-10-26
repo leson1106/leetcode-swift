@@ -39,6 +39,43 @@ extension Solution {
         }
         return true
     }
+    
+    ///Time complexity `O(n)` overall
+    ///Space complexity `O(1)`
+    func isPalindrome2(_ head: ListNode?) -> Bool {
+        guard head != nil else { return false }
+        guard head?.next != nil else { return true }
+        
+        var slow = head
+        var fast = head?.next
+        while fast?.next != nil {
+            slow = slow?.next
+            fast = fast?.next?.next
+        }
+        //even nodes, slow.next should be middle
+        if fast != nil {
+            slow = slow?.next
+        }
+        
+        //reverse slow end compare with curr
+        var prev: ListNode?
+        var next: ListNode?
+        while slow != nil {
+            next = slow?.next
+            slow?.next = prev
+            prev = slow
+            slow = next
+        }
+        slow = prev
+        
+        fast = head
+        while slow != nil {
+            if slow?.val != fast?.val { return false }
+            slow = slow?.next
+            fast = fast?.next
+        }
+        return true
+    }
 }
 
 class Solution2 {
@@ -66,4 +103,9 @@ let list: ListNode? = ListNode(1, .init(2, .init(2, .init(1))))
 //let result = Solution().isPalindrome(list)
 
 let result2 = Solution2().isPalindrome(list)
+
+let res3 = Solution().isPalindrome2(.init(1, .init(2, .init(3, .init(4, .init(4, .init(3, .init(2, .init(1, .init(0))))))))))
+let res4 = Solution().isPalindrome2(.init(1, .init(2, .init(3, .init(4, .init(4, .init(3, .init(2, .init(1)))))))))
+let res5 = Solution().isPalindrome2(.init(1, .init(2)))
+let res6 = Solution().isPalindrome2(.init(1))
 //: [Next](@next)
