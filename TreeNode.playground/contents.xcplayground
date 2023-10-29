@@ -19,5 +19,6 @@
         <page name='103_tree_zigzag_level_order_traversal'/>
         <page name='199_binary_tree_right_side_view'/>
         <page name='94_binary_tree_inorder_traversal'/>
+        <page name='700_search_in_BST'/>
     </pages>
 </playground>
