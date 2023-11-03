@@ -21,5 +21,6 @@
         <page name='94_binary_tree_inorder_traversal'/>
         <page name='700_search_in_BST'/>
         <page name='2265_count_nodes_equal_to_average_of_subtree'/>
+        <page name='98_validate_bst'/>
     </pages>
 </playground>
