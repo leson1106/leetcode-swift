@@ -23,5 +23,5 @@ class Solution {
     }
 }
 
-let res = Solution().sortVowels(lEetcOde)
-let res1 = Solution().sortVowels(lYmpH)
+let res = Solution().sortVowels("lEetcOde")
+let res1 = Solution().sortVowels("lYmpH")
